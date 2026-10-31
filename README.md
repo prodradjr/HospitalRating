@@ -4,6 +4,7 @@
 **Know before you go: hospital accessibility, rated by what actually works.**
 
 Built for the hackathon theme *"Accessibility tools for navigating the medical care system for disabled users."*
+the app link: https://prodradjr.github.io/HospitalRating/HospitalRating/
 
 ## The problem
 Disabled patients often can't use the equipment at a clinic: fixed-height exam tables, standard scales, no patient lift, inaccessible restrooms or entrances. They usually only find out when they arrive.

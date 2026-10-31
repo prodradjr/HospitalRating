@@ -1,8 +1,4 @@
-Written for: hackathon judges and anyone who finds the project on GitHub.
 
-The numbers below come from running `node evaluate.js` on your current code just now. If you change the training data, run it again and update them. Your repository's front page shows the `README.md` in `/Workshop`, which is why the commands start with `cd HospitalRating`.
-
-```markdown
 # HospitalRating
 
 **Know before you go: hospital accessibility, rated by what actually works.**

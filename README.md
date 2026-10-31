@@ -104,8 +104,4 @@ HospitalRating/
 - Expand across Georgia.
 ```
 
-**Before you paste it**, check two things:
-1. **"23 real places" and the 3 unverified ones:** the data has 3 places marked unverified, the 2 Northside hospitals plus one more. Make sure the app shows the tag on all three.
-2. **"High contrast (WCAG AA)":** keep that line only if you've checked the contrast or the restyle prompt's report confirmed it. Otherwise change it to "High contrast colors."
-
-To add it, replace everything in `/Workshop/README.md` with the text, then commit and push as usual.
+*

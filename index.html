@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HospitalRating – does the accessibility equipment actually work?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="banner" role="note">
+    <span aria-hidden="true">🧪</span> <strong>Prototype</strong> – patient reviews are demonstration data.
+  </div>
+
+  <header class="site-header">
+    <p class="logo"><span aria-hidden="true">♿</span> HospitalRating</p>
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="#needs" data-nav="needs">My needs</a></li>
+        <li><a href="#list" data-nav="list">Find care</a></li>
+      </ul>
+    </nav>
+    <div class="text-size" role="group" aria-label="Text size">
+      <button type="button" data-size="0" aria-pressed="true">A</button>
+      <button type="button" data-size="1" aria-pressed="false">A+</button>
+      <button type="button" data-size="2" aria-pressed="false">A++</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Screen 1: needs picker -->
+    <section id="screen-needs" class="screen" hidden aria-labelledby="needs-title">
+      <h1 id="needs-title" tabindex="-1">What do you need at a medical visit?</h1>
+      <p class="lead">Choose everything that matters to you. We'll check what other patients say about each one.</p>
+      <div id="needs-buttons" class="toggle-grid"></div>
+      <button type="button" id="needs-done" class="btn btn-primary btn-wide">Find care <span aria-hidden="true">→</span></button>
+    </section>
+
+    <!-- Screen 2: place list -->
+    <section id="screen-list" class="screen" hidden aria-labelledby="list-title">
+      <h1 id="list-title" tabindex="-1">Hospitals near Atlanta</h1>
+      <div id="type-buttons" class="tab-row" role="group" aria-label="Type of care"></div>
+      <div id="specialty-group" hidden>
+        <h2 id="specialty-title">Choose a specialty</h2>
+        <div id="specialty-buttons" class="toggle-grid" role="group" aria-labelledby="specialty-title"></div>
+      </div>
+      <div class="filter-row">
+        <label for="place-filter" class="field-label">Filter by city or ZIP code <span class="hint-inline">(optional)</span></label>
+        <div class="row">
+          <input type="text" id="place-filter" inputmode="search" autocomplete="postal-code" placeholder="e.g. Lawrenceville or 30309">
+          <button type="button" id="place-filter-clear" class="btn">Clear</button>
+        </div>
+      </div>
+      <p class="lead" id="list-needs-summary"></p>
+      <p id="list-count" class="score" aria-live="polite"></p>
+      <ul id="clinic-list" class="card-list"></ul>
+    </section>
+
+    <!-- Screen 3: hospital page -->
+    <section id="screen-clinic" class="screen" hidden aria-labelledby="clinic-title">
+      <p><a href="#list" class="back-link" id="clinic-back"><span aria-hidden="true">←</span> <span id="clinic-back-label">All hospitals</span></a></p>
+      <h1 id="clinic-title" tabindex="-1"></h1>
+      <div id="clinic-info"></div>
+      <h2 id="clinic-compare-title">Equipment: what the hospital says vs. what patients say</h2>
+      <div id="clinic-table-wrap" aria-live="polite"></div>
+      <h2>Reviews</h2>
+      <ul id="clinic-reviews" class="review-list"></ul>
+    </section>
+
+    <!-- Screen 4: write a review -->
+    <section id="screen-review" class="screen" hidden aria-labelledby="review-title">
+      <p><a href="#list" class="back-link" id="review-back"><span aria-hidden="true">←</span> Back to this place</a></p>
+      <h1 id="review-title" tabindex="-1">Write a review</h1>
+      <p class="lead">Just tell us what happened, in your own words. You don't need to pick categories – we'll work that out and show you.</p>
+      <form id="review-form" novalidate>
+        <label for="review-text" class="field-label">What happened at your visit?</label>
+        <p class="hint" id="review-hint">Example: "The exam table wouldn't go down, but the nurse was really helpful."</p>
+        <textarea id="review-text" rows="6" aria-describedby="review-hint" required></textarea>
+        <div class="row">
+          <button type="button" id="mic-btn" class="btn" hidden aria-pressed="false">
+            <span aria-hidden="true" id="mic-icon">🎤</span> <span id="mic-label">Speak instead</span>
+          </button>
+        </div>
+        <p id="voice-status" class="voice-status" role="status" hidden></p>
+        <details class="voice-diag">
+          <summary>Voice troubleshooting info</summary>
+          <ul id="voice-diag-list"></ul>
+        </details>
+
+        <fieldset class="stars">
+          <legend>Overall rating <span class="hint-inline">(optional – never used for equipment results)</span></legend>
+          <div class="star-options" id="star-options"></div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary btn-wide">Submit review</button>
+        <p id="review-error" class="error" role="alert"></p>
+      </form>
+
+      <h2 id="understood-title">How we understood your review</h2>
+      <p class="hint" id="understood-hint">This preview updates as you type.</p>
+      <div id="understood" aria-labelledby="understood-title"></div>
+      <div id="announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Addresses and phone numbers were checked on official websites on 31 Oct 2026, except those tagged "unverified".
+      None of these hospitals or clinics publish their accessibility equipment, so every "What the place says" column reads "Not published".</p>
+    <button type="button" id="reset-btn" class="btn btn-small">Reset demo data</button>
+  </footer>
+
+  <script src="data/clinics.js"></script>
+  <script src="data/reviews.js"></script>
+  <script src="data/training.js"></script>
+  <script src="classifier.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
